@@ -8,8 +8,8 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'docker build -t mern-server ./server'
-        sh 'docker build -t mern-client ./client'
+        sh 'docker build -t mern-server ./Server'
+        sh 'docker build -t mern-client ./Client'
       }
     }
 
@@ -17,7 +17,7 @@ pipeline {
       steps {
         sh 'docker compose up -d --build'
         sh 'sleep 15'
-        sh 'docker compose exec -T server wget -qO- http://localhost:9000'
+        sh 'docker compose exec -T server wget -qO- http://localhost:9000/api/health'
         sh 'docker compose exec -T client wget -qO- http://localhost:3000'
       }
     }

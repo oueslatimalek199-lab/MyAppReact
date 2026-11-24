@@ -1,3 +1,4 @@
+
 services:
   mongodb:
     image: mongo
@@ -6,7 +7,7 @@ services:
       - mongo-data:/data/db
 
   server:
-    build: ./server
+    build: ./Server
     container_name: server
     ports:
       - "9000:9000"
@@ -16,7 +17,7 @@ services:
       - mongodb
 
   client:
-    build: ./client
+    build: ./Client
     container_name: client
     ports:
       - "3000:3000"
